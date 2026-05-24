@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 252 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 252 100% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 252 100% 58%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 94%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 94%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 94%;
+    --primary: 252 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 94%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 252 100% 58%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 252 100% 58%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    cursor: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  code,
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+
+  /* Neubrutalism Card */
+  .neo-card {
+    @apply bg-white dark:bg-[#1a1a1a] border-[3px] border-black dark:border-[#333];
+    box-shadow: 5px 5px 0px #000;
+    border-radius: 12px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .neo-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px #5227FF;
+  }
+
+  /* Neubrutalism Button */
+  .neo-btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium transition-all;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    border-radius: 8px;
+  }
+
+  .neo-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #5227FF;
+  }
+
+  .neo-btn-primary {
+    @apply bg-[#111] text-white;
+  }
+
+  .neo-btn-primary:hover {
+    @apply bg-[#5227FF];
+  }
+
+  .neo-btn-secondary {
+    @apply bg-white text-[#111];
+  }
+
+  .neo-btn-secondary:hover {
+    @apply bg-white;
+  }
+
+  /* Shiny Text Effect */
+  .shiny-text {
+    background: linear-gradient(120deg,
+        #b5b5b5 0%,
+        #b5b5b5 40%,
+        #ffffff 50%,
+        #b5b5b5 60%,
+        #b5b5b5 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shiny-sweep 2s linear infinite;
+  }
+
+  .dark .shiny-text {
+    background: linear-gradient(120deg,
+        #666 0%,
+        #666 40%,
+        #fff 50%,
+        #666 60%,
+        #666 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shiny-sweep 2s linear infinite;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #111 0%, #5227FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .gradient-text {
+    background: linear-gradient(135deg, #f0f0f0 0%, #8b6fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* RGB Animated Border */
+  .rgb-border {
+    position: relative;
+    border-radius: 16px;
+    padding: 4px;
+    background: conic-gradient(from 0deg,
+        #5227FF,
+        #00D4FF,
+        #5227FF,
+        #FFD700,
+        #5227FF);
+    background-size: 200% 200%;
+    animation: rgb-rotate 4s linear infinite;
+  }
+
+  .rgb-border>* {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* RGB Glow Border */
+  .rgb-glow {
+    position: relative;
+  }
+
+  .rgb-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 20px;
+    background: conic-gradient(from 0deg,
+        #5227FF,
+        #00D4FF,
+        #5227FF,
+        #FFD700,
+        #5227FF);
+    background-size: 200% 200%;
+    animation: rgb-rotate 4s linear infinite;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.6;
+  }
+
+  /* Pill Tag */
+  .neo-tag {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    border-radius: 9999px;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  @layer components {
+
+    /* ... other component definitions ... */
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dark .glass {
+      background: rgba(10, 10, 10, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+
+  /* Input Neubrutalism */
+  .neo-input {
+    @apply w-full px-4 py-3 bg-white dark:bg-[#1a1a1a] text-[#111] dark:text-white outline-none transition-all;
+    border: 3px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .neo-input:focus {
+    border-color: #5227FF;
+    box-shadow: 3px 3px 0px #5227FF;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Keyframes */
+@keyframes shiny-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes rgb-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes rgb-glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce-subtle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* Swiper Custom Styles */
+.swiper-pagination-bullet {
+  background: #999 !important;
+  opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #5227FF !important;
+  opacity: 1 !important;
+}
+
+/* Hide default cursor when custom cursor active */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
